@@ -5,7 +5,7 @@ data "aws_eks_cluster_auth" "main" {
 
 # 1. S3 Bucket for Terraform State
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "bedrock-tfstate-${var.student_id}" 
+  bucket = "bedrock-tfstate-${var.student_id}"
 
   # Prevent accidental deletion of the state bucket
   lifecycle {
@@ -159,7 +159,7 @@ resource "aws_nat_gateway" "main" {
     Project = "Bedrock"
   }
 
-  
+
   depends_on = [aws_internet_gateway.main]
 }
 
@@ -270,7 +270,7 @@ resource "aws_iam_role_policy_attachment" "eks_container_registry_policy" {
 resource "aws_eks_cluster" "main" {
   name     = var.cluster_name
   role_arn = aws_iam_role.eks_cluster.arn
-  version  = "1.34"  # As per requirement: >= v1.34.0
+  version  = "1.34" # As per requirement: >= v1.34.0
 
   vpc_config {
     subnet_ids = concat(
@@ -307,7 +307,7 @@ resource "aws_eks_node_group" "main" {
   cluster_name    = aws_eks_cluster.main.name
   node_group_name = "bedrock-node-group"
   node_role_arn   = aws_iam_role.eks_node_group.arn
-  subnet_ids      = aws_subnet.private[*].id  # Deploy nodes in private subnets
+  subnet_ids      = aws_subnet.private[*].id # Deploy nodes in private subnets
 
   scaling_config {
     desired_size = 2
@@ -395,7 +395,7 @@ EOF
 
 # S3 bucket for marketing assets (product images)
 resource "aws_s3_bucket" "assets" {
-  bucket = "bedrock-assets-1072"  # Using your student ID
+  bucket = "bedrock-assets-1072" # Using your student ID
 
   tags = {
     Name    = "bedrock-assets-1072"
@@ -593,10 +593,10 @@ resource "kubernetes_role_binding_v1" "dev_view" {
 resource "aws_eks_addon" "cloudwatch_observability" {
   cluster_name = aws_eks_cluster.main.name
   addon_name   = "amazon-cloudwatch-observability"
-  
+
   # Let EKS choose compatible version
   # addon_version = ""
-  
+
   depends_on = [aws_eks_node_group.main]
 
   tags = {
