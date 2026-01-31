@@ -20,21 +20,25 @@ Production-grade microservices deployment on AWS EKS for InnovateMart's retail s
 ## Deployment
 
 ### 1. Clone Repository
-```bash
-git clone <your-repo-url>
+
+git clone https://github.com/Ermias204/project-bedrock
+
 cd project-bedrock
 2. Initialize Terraform
-bash
+
 cd infrastructure
 terraform init
+
 3. Apply Infrastructure
-bash
+
 terraform apply
+
 4. Configure kubectl
-bash
+
 aws eks update-kubeconfig --region us-east-1 --name project-bedrock-cluster
+
 5. Verify Deployment
-bash
+
 kubectl get pods -n retail-app
 kubectl get svc -n retail-app
 CI/CD Pipeline
