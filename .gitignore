@@ -1,0 +1,75 @@
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+terraform.tfstate.backup
+*.tfplan
+.terraform.lock.hcl
+
+# Sensitive files
+**/secrets/*
+**/credentials/*
+**/*.pem
+**/*.key
+**/*.cert
+**/*.crt
+
+# AWS CLI & credentials
+.aws/credentials
+.aws/config
+
+# Kubernetes files
+kubeconfig
+*.kubeconfig
+
+# Lambda deployment files
+lambda-asset-processor.zip
+*.zip
+
+# Test files
+test-*.jpg
+test-*.json
+response.json
+manual-test.json
+test-event.json
+test-output.json
+
+# Local development files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.temp
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv/
+env/
+ENV/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db

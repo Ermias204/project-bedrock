@@ -1,0 +1,26 @@
+# kubernetes/deploy-app.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: retail-app
+  labels:
+    name: retail-app
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: retail-store-deployment-cm
+  namespace: retail-app
+data:
+  deploy.sh: |
+    #!/bin/bash
+    # Add the Helm repository
+    helm repo add retail-store-sample-app https://aws-containers.github.io/retail-store-sample-app
+    helm repo update
+    
+    # Install the application
+    helm install retail-store retail-store-sample-app/retail-store-sample-app \
+      --namespace retail-app \
+      --set global.namespace=retail-app \
+      --create-namespace
