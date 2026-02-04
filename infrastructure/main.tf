@@ -335,12 +335,12 @@ resource "aws_eks_node_group" "main" {
 # DEVELOPER IAM USER
 # ======================
 
-# IAM user for developer access (bedrock-dev-view)
+# IAM user for developer access (bedrock-dev-view-final-final)
 resource "aws_iam_user" "dev_view" {
-  name = "bedrock-dev-view"
+  name = "bedrock-dev-view-final-final"
 
   tags = {
-    Name    = "bedrock-dev-view"
+    Name    = "bedrock-dev-view-final-final"
     Project = "Bedrock"
   }
 }
@@ -366,7 +366,7 @@ resource "null_resource" "update_aws_auth" {
       kubectl get configmap aws-auth -n kube-system -o yaml > aws-auth.yaml
       
       # Check if user already exists in mapUsers
-      if ! grep -q "bedrock-dev-view" aws-auth.yaml; then
+      if ! grep -q "bedrock-dev-view-final-final" aws-auth.yaml; then
         # Add the user mapping
         cat >> aws-auth.yaml <<EOF
       - userarn: ${aws_iam_user.dev_view.arn}
@@ -566,7 +566,7 @@ output "lambda_function_arn" {
 # Create Kubernetes RoleBinding for view access in retail-app namespace
 resource "kubernetes_role_binding_v1" "dev_view" {
   metadata {
-    name      = "bedrock-dev-view-binding"
+    name      = "bedrock-dev-view-final-final-binding"
     namespace = "retail-app"
   }
 
